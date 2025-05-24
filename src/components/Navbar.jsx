@@ -1,30 +1,42 @@
-import React, { useEffect, useState, useContext, useCallback } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { Moon, Sun } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import gsap from "gsap";
 import NavLink from "./NavLink";
 import MobileNavLink from "./MobileNavLink";
 import { ThemeContext } from "../App";
 
-const sections = ["home", "about", "skills", "projects", "contact"];
 
 function Navbar() {
   const { darkMode, toggleTheme } = useContext(ThemeContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Handle scroll effect
+  const navbarRef = useRef(null);
+
+  // Animate on mount (slide down)
+  useEffect(() => {
+    gsap.fromTo(
+      navbarRef.current,
+      { y: -100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.out"
+      }
+    );
+  }, []);
+
+  // Add shadow when scrolling
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
-    
-    // Use passive listener for better performance
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Memoized scroll function to prevent unnecessary recreations
-  const scrollToSection = useCallback((id) => {
+  const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
       const navbarHeight = 80;
@@ -32,49 +44,12 @@ function Navbar() {
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       setIsMenuOpen(false);
     }
-  }, []);
-
-  // Navbar animation variants
-  const navbarVariants = {
-    hidden: { y: -100, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10,
-        duration: 0.5
-      }
-    }
-  };
-
-  // Mobile menu animation variants
-  const mobileMenuVariants = {
-    hidden: { 
-      opacity: 0,
-      height: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut"
-      }
-    },
-    visible: {
-      opacity: 1,
-      height: "auto",
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut"
-      }
-    }
   };
 
   return (
-    <motion.nav
-      initial="hidden"
-      animate="visible"
-      variants={navbarVariants}
-      className={`fixed top-0 w-full z-20 transition-all duration-300 md:px-2 px-6 ${
+    <nav
+      ref={navbarRef}
+      className={`fixed top-0 w-full z-20 transition-all duration-300 md:px-2 px-0 ${
         scrolled
           ? `${darkMode ? "bg-gray-900/95 shadow-gray-800/20" : "bg-white/95 shadow-gray-200/20"} shadow-lg backdrop-blur-sm`
           : "bg-transparent"
@@ -90,18 +65,12 @@ function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center lg:space-x-8">
-            {sections.map((section) => (
-              <NavLink 
-                key={section} 
-                onClick={() => scrollToSection(section)} 
-                darkMode={darkMode}
-              >
+            {["home", "about", "skills", "projects", "contact"].map((section) => (
+              <NavLink key={section} onClick={() => scrollToSection(section)} darkMode={darkMode}>
                 {section.charAt(0).toUpperCase() + section.slice(1)}
               </NavLink>
             ))}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <button
               onClick={toggleTheme}
               className={`p-2 rounded-full transition-colors duration-300 ${
                 darkMode
@@ -110,14 +79,12 @@ function Navbar() {
               }`}
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </motion.button>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <button
               onClick={toggleTheme}
               className={`p-2 rounded-full mr-2 transition-colors duration-300 ${
                 darkMode
@@ -126,10 +93,8 @@ function Navbar() {
               }`}
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            </button>
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`p-2 rounded-md focus:outline-none ${
                 darkMode ? "text-white hover:bg-gray-800" : "text-gray-700 hover:bg-gray-200"
@@ -142,37 +107,25 @@ function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 )}
               </svg>
-            </motion.button>
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu with AnimatePresence for smooth unmounting */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={mobileMenuVariants}
-            className={`md:hidden overflow-hidden ${darkMode ? "bg-gray-800" : "bg-white"}`}
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {sections.map((section) => (
-                <MobileNavLink 
-                  key={section} 
-                  onClick={() => scrollToSection(section)} 
-                  darkMode={darkMode}
-                >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </MobileNavLink>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className={`md:hidden transition-all duration-300 ${darkMode ? "bg-gray-800" : "bg-white"}`}>
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {["home", "about", "skills", "projects", "contact"].map((section) => (
+              <MobileNavLink key={section} onClick={() => scrollToSection(section)} darkMode={darkMode}>
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </MobileNavLink>
+            ))}
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }
 
-export default React.memo(Navbar);
+export default Navbar;
