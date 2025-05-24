@@ -6,6 +6,7 @@ import { Briefcase, Github, Instagram, Linkedin, Locate, LocateFixed, LocateIcon
 import ContactItem from "./ContactItem";
 import SocialLink from "./SocialLink";
 import { ThemeContext } from "../App";
+import { RiUserLine } from "@remixicon/react";
 
 
 function ContactSection() {
@@ -145,12 +146,14 @@ function ContactSection() {
               <p className={`mb-8 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 I'm always open to new opportunities or freelance work.
               </p>
-              <div className="space-y-6">
+              <div className="space-y-8">
+                <ContactItem icon={<RiUserLine size={20} />} title="Name" value="Shravan Padale" darkMode={darkMode} />
+
                 <ContactItem icon={<Mail size={20} />} title="Email" value="shravanpadale1@gmail.com" darkMode={darkMode} />
-                <ContactItem icon={<User size={20} />} title="Phone" value="+91 7757088366" darkMode={darkMode} />
+                
                 <ContactItem icon={<LocateFixed size={20} />} title="Location" value="Pune, Maharashtra" darkMode={darkMode} />
               </div>
-              <div className="mt-10">
+              <div className="mt-14">
                 <h4 className="font-medium mb-4">Connect with me</h4>
                 <div className="flex space-x-4">
                   <SocialLink icon={<Github size={20} />} link={"https://github.com/Shravan-Padale771"} darkMode={darkMode} />
