@@ -2,22 +2,21 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { Briefcase, Github, Instagram, Linkedin, Locate, LocateFixed, LocateIcon, Mail, MailIcon, Twitter, User } from "lucide-react";
+import ReCAPTCHA from "react-google-recaptcha"; // ✅ Add this
+import { Github, Instagram, Linkedin, LocateFixed, Mail, MailIcon } from "lucide-react";
 import ContactItem from "./ContactItem";
 import SocialLink from "./SocialLink";
 import { ThemeContext } from "../App";
 import { RiUserLine } from "@remixicon/react";
-
 
 function ContactSection() {
   const { darkMode } = useContext(ThemeContext);
   const [visible, setVisible] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(null); // ✅ Store captcha token
   const ref = useRef(null);
-  
 
-  // Observer for animation on scroll
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -30,19 +29,25 @@ function ContactSection() {
     return () => ref.current && observer.unobserve(ref.current);
   }, []);
 
-  // Form handler
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!captchaToken) { // ✅ Ensure captcha is done
+      toast.error("Please complete the reCAPTCHA.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const res = await axios.post(import.meta.env.VITE_API, formData); // update this URL
+      const res = await axios.post(import.meta.env.VITE_API, { ...formData, captcha: captchaToken }); // ✅ Send token
       toast.success("Message sent successfully!");
       setFormData({ name: "", email: "", subject: "", message: "" });
+      setCaptchaToken(null); // ✅ Reset captcha
     } catch (err) {
       toast.error("Failed to send message. Try again.");
     } finally {
@@ -74,6 +79,7 @@ function ContactSection() {
             <div className={`rounded-xl p-8 shadow-lg transition-colors duration-300 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
               <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
               <form onSubmit={handleSubmit}>
+                {/* Name & Email */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label className={`block mb-2 text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Your Name</label>
@@ -100,6 +106,8 @@ function ContactSection() {
                     />
                   </div>
                 </div>
+
+                {/* Subject */}
                 <div className="mb-6">
                   <label className={`block mb-2 text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Subject</label>
                   <input
@@ -112,6 +120,8 @@ function ContactSection() {
                     className={`w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 text-gray-900 border-gray-300'}`}
                   />
                 </div>
+
+                {/* Message */}
                 <div className="mb-6">
                   <label className={`block mb-2 text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Your Message</label>
                   <textarea
@@ -124,6 +134,16 @@ function ContactSection() {
                     className={`w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 text-gray-900 border-gray-300'}`}
                   />
                 </div>
+
+                {/* ✅ reCAPTCHA */}
+                <div className="mb-6 flex justify-center">
+                  <ReCAPTCHA
+                    sitekey={import.meta.env.VITE_SITE_KEY} // 🔹 Replace with your key
+                    onChange={(token) => setCaptchaToken(token)}
+                  />
+                </div>
+
+                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -148,9 +168,7 @@ function ContactSection() {
               </p>
               <div className="space-y-8">
                 <ContactItem icon={<RiUserLine size={20} />} title="Name" value="Shravan Padale" darkMode={darkMode} />
-
                 <ContactItem icon={<Mail size={20} />} title="Email" value="shravanpadale1@gmail.com" darkMode={darkMode} />
-                
                 <ContactItem icon={<LocateFixed size={20} />} title="Location" value="Pune, Maharashtra" darkMode={darkMode} />
               </div>
               <div className="mt-14">
