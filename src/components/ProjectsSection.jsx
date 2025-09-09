@@ -28,12 +28,12 @@ function ProjectsSection() {
     },
    
     {
-      title: "Memopic",
-      description: "A responsive web app to save images full of memories online",
-      technologies: ["React.js", "GSAP", "Tailwind CSS", "Framer Motion"],
-      image: "/img/memopic.png",
-      demoLink: "https://memopic.onrender.com",  
-      githubLink: "https://github.com/Shravan-Padale771/Memopic"
+      title: "QuickText-six",
+      description: "QuickText-six lets you send and receive secure messages with a 7-character code. Messages expire automatically for privacy.",
+      technologies: ["React.js", "Tailwind CSS","Express.js","Supabase"],
+      image: "/img/QuickText.png",
+      demoLink: "https://quicktext-six.vercel.app/",  
+      githubLink: "https://github.com/Shravan-Padale771/"
     },
   ];
 
