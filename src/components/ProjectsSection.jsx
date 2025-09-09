@@ -12,10 +12,10 @@ function ProjectsSection() {
     
     {
       title: "Ellora Tea",
-      description: "A creative portfolio for Ellora Tea showcasing their product.",
-      technologies: ["Reactjs", "Tailwind CSS", "Expressjs", "AWS"],
+      description: "A Ecommerce site for Ellora Tea Company showcasing their product.",
+      technologies: ["Reactjs", "Tailwind CSS", "Spring Boot", "AWS"],
       image: "/img/ElloraTea.png",
-      demoLink: "https://img.freepik.com/free-vector/torn-style-coming-soon-promo-template-social-media-post_1017-55783.jpg?semt=ais_hybrid&w=740",  
+      demoLink: "https://elloratea.in/",  
       githubLink: "https://github.com/Shravan-Padale771"
     },
     {
