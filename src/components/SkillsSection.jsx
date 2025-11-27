@@ -36,8 +36,6 @@ function SkillsSection() {
   { name: "React.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
    { name: "Tailwind CSS", logo: "img/tailwindcss.svg" },
   { name: "Bootstrap", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
-  { name: "GSAP", logo: "img/gsap.svg" },
-  { name: "Framer Motion", logo: "https://cdn.worldvectorlogo.com/logos/framer-motion.svg" },
   { name: "React Native", logo: "https://reactnative.dev/img/header_logo.svg" },
   
   
@@ -54,8 +52,7 @@ function SkillsSection() {
   { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
 
   // Tools & Technologies
-  
-  
+
   
  
   { name: "Visual Studio Code", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
