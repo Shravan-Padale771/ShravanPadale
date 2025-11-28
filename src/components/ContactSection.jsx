@@ -59,7 +59,7 @@ function ContactSection() {
     <section
       id="contact"
       ref={ref}
-      className={`py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300 ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}
+      className={`py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300 ${darkMode ? 'bg-gray-900' : 'bg-slate-50'}`}
     >
       <ToastContainer position="top-center" />
       <div className="max-w-7xl mx-auto">
@@ -74,7 +74,7 @@ function ContactSection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 items-center lg:grid-cols-2 gap-12">
             {/* Form Card */}
             <div className={`rounded-xl p-8 shadow-lg transition-colors duration-300 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
               <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
@@ -161,7 +161,7 @@ function ContactSection() {
             </div>
 
             {/* Info Card */}
-            <div className={`rounded-xl p-8 shadow-lg h-full transition-colors duration-300 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+            <div className={`rounded-xl px-10 py-14 shadow-lg h-max transition-colors duration-300 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
               <p className={`mb-8 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 I'm always open to new opportunities or freelance work.

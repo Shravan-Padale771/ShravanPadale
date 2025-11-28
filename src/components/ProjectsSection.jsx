@@ -29,7 +29,7 @@ function ProjectsSection() {
    
     {
       title: "QuickText-six",
-      description: "QuickText-six lets you send and receive secure messages with a 7-character code. Messages expire automatically for privacy.",
+      description: "QuickText-six lets you send and receive secure messages with a 7-character code. Messages expire automatically.",
       technologies: ["React.js", "Tailwind CSS","Express.js","Supabase"],
       image: "/img/QuickText.png",
       demoLink: "https://quicktext-six.vercel.app/",  
