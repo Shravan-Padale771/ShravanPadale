@@ -19,6 +19,14 @@ function ProjectsSection() {
       githubLink: "https://github.com/Shravan-Padale771"
     },
     {
+      title: "DiaPredict",
+      description: "Predictive AI to understand your diabetes risk, To secure your future",
+      technologies: ["React.js", "Tailwind CSS", "Flask", "Python"],
+      image: "/img/diaPredict.png",
+      demoLink: "https://dia-predict-beta.vercel.app/",  
+      githubLink: "https://github.com/Shravan-Padale771"
+    },
+    {
       title: "PlanOut",
       description: "A Workout planner which takes your goals and gives you finely crafted workout.",
       technologies: ["React.js", "Tailwind CSS", "JavaScript"],
