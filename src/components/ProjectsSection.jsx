@@ -11,16 +11,30 @@ function ProjectsSection() {
   const projects = [
     
     {
-      title: "Ellora Tea",
-      description: "A Ecommerce site for Ellora Tea Company showcasing their product.",
+      title: "DeogiriCropScience (Client Project)",
+      description: "Portfolio website for DeogiriCropScience company showcasing their product.",
+      technologies: ["Reactjs", "Tailwind CSS", "Framermotion"],
+      image: "/img/Deogiri.png",
+      demoLink: "https://www.deogiricropsciences.com/",  
+      
+    },
+    {
+      title: "Suryashaktisolar (Client Project)",
+      description: "A Ecommerce site for Ellora Tea Company showcasing their product and available all over Maharashtra. ",
+      technologies: ["Reactjs", "Tailwind CSS", "Framermotion", "EmailJS"],
+      image: "/img/SuryaSolar.png",
+      demoLink: "https://suryashaktisolar.vercel.app/",  
+    },
+    {
+      title: "Ellora Tea (Client Project)",
+      description: "A Ecommerce site for Ellora Tea Company showcasing their product and available all over Maharashtra. ",
       technologies: ["Reactjs", "Tailwind CSS", "Spring Boot", "AWS"],
       image: "/img/ElloraTea.png",
       demoLink: "https://elloratea.in/",  
-      githubLink: "https://github.com/Shravan-Padale771"
     },
     {
       title: "DiaPredict",
-      description: "Predictive AI to understand your diabetes risk, To secure your future",
+      description: "Here is Project of Predictive AI to understand your diabetes risk, To secure your future",
       technologies: ["React.js", "Tailwind CSS", "Flask", "Python"],
       image: "/img/diaPredict.png",
       demoLink: "https://dia-predict-beta.vercel.app/",  
@@ -28,7 +42,7 @@ function ProjectsSection() {
     },
     {
       title: "PlanOut",
-      description: "A Workout planner which takes your goals and gives you finely crafted workout.",
+      description: "Project on Workout planner which takes your goals and gives you finely crafted workout.",
       technologies: ["React.js", "Tailwind CSS", "JavaScript"],
       image: "/img/PlanOut.png",
       demoLink: "https://plan-out-ashy.vercel.app/",  
@@ -37,7 +51,7 @@ function ProjectsSection() {
    
     {
       title: "QuickText-six",
-      description: "QuickText-six lets you send and receive secure messages with a 7-character code. Messages expire automatically.",
+      description: "Personal Project QuickText-six lets you send and receive secure messages with a 7-character code. Messages expire automatically.",
       technologies: ["React.js", "Tailwind CSS","Express.js","Supabase"],
       image: "/img/QuickText.png",
       demoLink: "https://quicktext-six.vercel.app/",  
