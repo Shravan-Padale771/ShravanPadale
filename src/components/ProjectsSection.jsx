@@ -18,13 +18,13 @@ function ProjectsSection() {
       demoLink: "https://www.deogiricropsciences.com/",  
       
     },
-    {
-      title: "Suryashaktisolar (Client Project)",
-      description: "A Ecommerce site for Ellora Tea Company showcasing their product and available all over Maharashtra. ",
-      technologies: ["Reactjs", "Tailwind CSS", "Framermotion", "EmailJS"],
-      image: "/img/SuryaSolar.png",
-      demoLink: "https://suryashaktisolar.vercel.app/",  
-    },
+    // {
+    //   title: "Suryashaktisolar (Client Project)",
+    //   description: "A Ecommerce site for Ellora Tea Company showcasing their product and available all over Maharashtra. ",
+    //   technologies: ["Reactjs", "Tailwind CSS", "Framermotion", "EmailJS"],
+    //   image: "/img/SuryaSolar.png",
+    //   demoLink: "https://suryashaktisolar.vercel.app/",  
+    // },
     {
       title: "Ellora Tea (Client Project)",
       description: "A Ecommerce site for Ellora Tea Company showcasing their product and available all over Maharashtra. ",
