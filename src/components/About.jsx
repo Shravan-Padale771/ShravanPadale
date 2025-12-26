@@ -165,7 +165,7 @@ function AboutSection() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <AboutCard ref={addToCardsRef} icon={<User size={20} />} title="Name" value="Shravan Padale" darkMode={darkMode} />
                 <AboutCard ref={addToCardsRef} icon={<Mail size={20} />} title="Email" value="shravanpadale1@gmail.com" darkMode={darkMode} />
-                <AboutCard ref={addToCardsRef} icon={<Briefcase size={20} />} title="Experience" value="1+ Years" darkMode={darkMode} />
+                <AboutCard ref={addToCardsRef} icon={<Briefcase size={20} />} title="Experience" value="2+ Years" darkMode={darkMode} />
                 <AboutCard ref={addToCardsRef} icon={<Github size={20} />} title="Projects" value="5+ Completed" darkMode={darkMode} />
               </div>
               
